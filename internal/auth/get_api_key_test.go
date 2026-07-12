@@ -8,7 +8,7 @@ import (
 
 func Test_api_key_good(t *testing.T) {
 	headers := http.Header{}
-	headers.Set("Authorization", "ApiKey beeebooops")
+	headers.Set("Authorization", "ApiKey beeebooop")
 	got, err := GetAPIKey(headers)
 	if err != nil {
 		t.Fatalf(err.Error())
