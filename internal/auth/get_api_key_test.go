@@ -11,7 +11,7 @@ func Test_api_key_good(t *testing.T) {
 	headers.Set("Authorization", "ApiKey beeebooop")
 	got, err := GetAPIKey(headers)
 	if err != nil {
-		t.Fatalf(err.Error())
+		t.Fatal(err.Error())
 	}
 	want := "beeebooop"
 	if !reflect.DeepEqual(want, got) {
