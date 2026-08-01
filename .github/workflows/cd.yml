@@ -16,7 +16,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v6
         with:
-          go-version: "1.26.0"
+          go-version: "1.26.5"
 
       - name: Build code
         run: ./scripts/buildprod.sh
@@ -30,4 +30,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v3'
       
       - name: 'Push to Google'
-        run: gcloud builds submit --tag us-central1-docker.pkg.dev/gen-lang-client-0834109200/notely-ar-repo/notely:v1 .
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/gen-lang-client-0834109200/notely-ar-repo/notely:latest .
+
+      - name: 'Deploy to Cloud Run'
+        run: gcloud run deploy notely --image us-central1-docker.pkg.dev/gen-lang-client-0834109200/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project gen-lang-client-0834109200 --max-instances=4
